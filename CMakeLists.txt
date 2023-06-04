@@ -13,6 +13,7 @@ endif()
 project(riscv32-perf-model LANGUAGES CXX C ASM)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  include(FetchContent)
   include(CTest)
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -31,6 +32,29 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+  FetchContent_Declare(
+    spdlog URL https://github.com/gabime/spdlog/archive/refs/tags/v1.11.0.zip)
+
+  FetchContent_Declare(
+    json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.2/include.zip)
+
+  FetchContent_MakeAvailable(spdlog json)
+
+  # Define paths for the fetched content
+  FetchContent_GetProperties(json)
+  if(NOT json_POPULATED)
+    FetchContent_Populate(json)
+  endif()
+
+  FetchContent_GetProperties(spdlog)
+  if(NOT spdlog_POPULATED)
+    FetchContent_Populate(spdlog)
+    add_library(spdlog INTERFACE)
+    target_include_directories(spdlog INTERFACE ${spdlog_SOURCE_DIR}/include)
+  endif()
+
+  add_subdirectory(lib)
   add_subdirectory(src)
 
 endif()

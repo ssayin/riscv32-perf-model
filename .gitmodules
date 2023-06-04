@@ -1,0 +1,3 @@
+[submodule "lib/decoder"]
+	path = lib/decoder
+	url = https://github.com/ssayin/riscv32-decoder.git
