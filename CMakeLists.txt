@@ -54,7 +54,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_include_directories(spdlog INTERFACE ${spdlog_SOURCE_DIR}/include)
   endif()
 
-  add_subdirectory(lib)
-  add_subdirectory(src)
+  add_subdirectory(perf_model)
 
 endif()
