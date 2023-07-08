@@ -10,6 +10,7 @@ namespace model {
 struct IClockSubscriber {
   virtual void onPosEdge() = 0;
   virtual void onNegEdge() = 0;
+  virtual void onAdvance() = 0;
 };
 
 } // namespace model

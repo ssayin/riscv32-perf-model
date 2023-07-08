@@ -7,28 +7,84 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
+#include "BasicClock.h"
+#include "BasicClockSubscriber.h"
 #include "IClock.h"
 #include "ICore.h"
 #include "model/BasicClockSubscriber.h"
 
 namespace model {
 
-class Core : public ICore, public BasicClockSubscriber {
+template <class T> class Input {
 public:
-  Core(std::string id, std::shared_ptr<BasicClock> clock)
-      : clk{clock}, BasicClockSubscriber(clock.get()) {}
+  void Write(T value) { t = value; };
+  T Read() { return t; }
 
-  void advance() override{};
+private:
+  T t;
+};
 
-  void onPosEdge() override {}
-  void onNegEdge() override { stats.Cycles++; }
+template <class T> class Output {
+public:
+  void Write(T value) { t = value; };
+  T Read() { return t; }
 
-  const PerfStats &getStats() const override { return stats; }
+private:
+  T t;
+};
+
+struct MemoryRequest {
+  enum Type : bool { READ, WRITE };
+  uint32_t AddrBase;
+  uint32_t NumBytes;
+  Type ReqType;
+  std::vector<uint8_t> Bytes;
+};
+
+struct FetchResponse {
+  uint32_t AddrBase;
+  uint32_t NumBytes;
+  uint16_t Tag;
+  std::vector<uint8_t> Bytes;
+};
+
+class FetchUnit : public BasicClockSubscriber {
+public:
+  FetchUnit(std::shared_ptr<BasicClock> clock)
+      : BasicClockSubscriber(clock.get()), clk{clock} {}
+
+  void onPosEdge() override;
+  void onNegEdge() override;
+  void onAdvance() override;
+
+  Input<FetchResponse> PortFetchResponse;
+  Output<MemoryRequest> PortMemoryRequest;
+
+  void processResponses();
+  void dispatchRequests();
 
 private:
   std::shared_ptr<BasicClock> clk;
+};
+
+class Core : public ICore, public BasicClockSubscriber {
+public:
+  Core(std::string id, std::shared_ptr<BasicClock> clock)
+      : BasicClockSubscriber(clock.get()), id{id}, clk{clock} {}
+
+  void onPosEdge() override;
+  void onNegEdge() override;
+  void onAdvance() override;
+
+  const PerfStats &getStats() const override;
+
+private:
+  std::shared_ptr<BasicClock> clk;
+  std::string id;
   PerfStats stats;
+  uint32_t instrPointer;
 };
 
 } // namespace model

@@ -11,7 +11,6 @@ namespace model {
 
 class ICore {
 public:
-  virtual void advance() = 0;
   virtual const PerfStats &getStats() const = 0;
 };
 

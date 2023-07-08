@@ -25,12 +25,16 @@ public:
   void advance() override {
     posEdge();
     negEdge();
+
+    for (const auto &x : listeners)
+      x->onAdvance();
   }
 
   void posEdge() override {
     for (const auto &x : listeners)
       x->onPosEdge();
   }
+
   void negEdge() override {
     for (const auto &x : listeners)
       x->onNegEdge();

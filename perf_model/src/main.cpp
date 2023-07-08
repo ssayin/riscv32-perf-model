@@ -3,15 +3,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #include "common/common.hpp"
+#include "model/Model.h"
 #include "nlohmann/json.hpp"
 #include "spdlog/spdlog.h"
 
 #include "model/BasicClock.h"
 #include "model/Core.h"
 
-int main(int argc, char **argv) {
-  spdlog::info("Begin simulation");
-
+void test() {
   auto clk = std::make_shared<model::BasicClock>();
 
   model::Core core0{"core_0", clk};
@@ -26,6 +25,13 @@ int main(int argc, char **argv) {
     printf("Core0 Cycles: %d\n", cycles_0);
     printf("Core1 Cycles: %d\n", cycles_1);
   }
+}
+int main(int argc, char **argv) {
+  spdlog::info("Begin simulation");
+
+  auto clk = std::make_shared<model::BasicClock>();
+
+  model::Model m{"model", clk};
 
   spdlog::info("End simulation");
 
