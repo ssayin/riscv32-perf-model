@@ -11,8 +11,8 @@ namespace model {
 class Model : public BasicClockSubscriber {
 public:
   Model(std::string id, std::shared_ptr<BasicClock> clock)
-      : BasicClockSubscriber(clock.get()), id{id}, clk{clock}, core{"core0",
-                                                                    clock} {}
+      : BasicClockSubscriber(clock.get()), id{id}, clk{clock},
+        core{"core0", clock} {}
 
   void onPosEdge() override {}
   void onNegEdge() override {}

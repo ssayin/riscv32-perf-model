@@ -1,4 +1,5 @@
 #include "Core.h"
+#include "FetchUnit.h"
 
 void model::Core::onPosEdge() {}
 
