@@ -34,18 +34,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   FetchContent_Declare(
     spdlog URL https://github.com/gabime/spdlog/archive/refs/tags/v1.11.0.zip)
-
-  FetchContent_Declare(
-    json
-    URL https://github.com/nlohmann/json/releases/download/v3.11.2/include.zip)
-
-  FetchContent_MakeAvailable(spdlog json)
-
-  # Define paths for the fetched content
-  FetchContent_GetProperties(json)
-  if(NOT json_POPULATED)
-    FetchContent_Populate(json)
-  endif()
+  FetchContent_MakeAvailable(spdlog)
 
   FetchContent_GetProperties(spdlog)
   if(NOT spdlog_POPULATED)
@@ -53,6 +42,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_library(spdlog INTERFACE)
     target_include_directories(spdlog INTERFACE ${spdlog_SOURCE_DIR}/include)
   endif()
+
+  set(rapidjson_SOURCE_DIR third_party/rapidjson)
 
   add_subdirectory(perf_model)
 

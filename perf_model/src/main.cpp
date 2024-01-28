@@ -4,7 +4,6 @@
 
 #include "common/common.hpp"
 #include "model/Model.h"
-#include "nlohmann/json.hpp"
 #include "spdlog/spdlog.h"
 
 #include "model/BasicClock.h"
@@ -32,6 +31,10 @@ int main(int argc, char **argv) {
   auto clk = std::make_shared<model::BasicClock>();
 
   model::Model m{"model", clk};
+
+  clk->advance();
+
+  printf("%d\n", m.core[0].getStats().getTotalCycles());
 
   spdlog::info("End simulation");
 
