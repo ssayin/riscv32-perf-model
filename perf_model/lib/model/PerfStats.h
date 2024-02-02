@@ -5,7 +5,7 @@
 #ifndef MODEL_PERFSTATS_H
 #define MODEL_PERFSTATS_H
 
-#include "model/IPerfStats.h"
+#include "IPerfStats.h"
 
 namespace model {
 

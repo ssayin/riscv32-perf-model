@@ -19,8 +19,3 @@ void model::Model::onPosEdge() {
     x.onPosEdge();
   }
 }
-void model::Model::playback(std::vector<VisibleState> &visible) {
-  for (auto &it : visible) {
-    std::cout << it.instr << std::endl;
-  }
-}

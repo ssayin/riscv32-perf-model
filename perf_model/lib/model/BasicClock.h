@@ -7,8 +7,8 @@
 
 #include <vector>
 
-#include "model/IClock.h"
-#include "model/IClockSubscriber.h"
+#include "IClock.h"
+#include "IClockSubscriber.h"
 
 namespace model {
 

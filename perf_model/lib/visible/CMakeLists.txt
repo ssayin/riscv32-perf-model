@@ -1,6 +1,2 @@
-add_library(visible OBJECT src/visible_extract.cpp src/visible_ostream.cpp)
-
-target_include_directories(visible PUBLIC src)
-
-add_executable(visible_test src/visible_test.cpp)
-target_link_libraries(visible_test PUBLIC visible)
+add_library(visible OBJECT visible_extract.cpp visible_ostream.cpp)
+target_include_directories(visible PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

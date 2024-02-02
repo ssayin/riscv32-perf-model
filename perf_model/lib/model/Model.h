@@ -1,10 +1,9 @@
 #ifndef MODEL_MODEL_H
 #define MODEL_MODEL_H
 
-#include "model/BasicClock.h"
-#include "model/BasicClockSubscriber.h"
-#include "model/Core.h"
-#include "visible.h"
+#include "BasicClock.h"
+#include "BasicClockSubscriber.h"
+#include "Core.h"
 #include <memory>
 
 namespace model {
@@ -18,8 +17,6 @@ public:
   void onPosEdge() override;
   void onNegEdge() override;
   void onAdvance() override;
-
-  void playback(std::vector<VisibleState> &visible);
 
   std::vector<Core> core;
 

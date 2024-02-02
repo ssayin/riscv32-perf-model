@@ -2,5 +2,5 @@
 
 cmake -B build
 make -C build
-./build/bin/model
+./build/bin/perf_model
 

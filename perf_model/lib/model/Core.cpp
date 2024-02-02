@@ -1,5 +1,5 @@
-#include "model/Core.h"
-#include "model/FetchUnit.h"
+#include "Core.h"
+#include "FetchUnit.h"
 
 void model::Core::onPosEdge() {}
 

@@ -5,8 +5,8 @@
 #ifndef MODEL_BASICCLOCKSUBSCRIBER_H
 #define MODEL_BASICCLOCKSUBSCRIBER_H
 
-#include "model/BasicClock.h"
-#include "model/IClockSubscriber.h"
+#include "BasicClock.h"
+#include "IClockSubscriber.h"
 
 namespace model {
 

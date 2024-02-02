@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#include "model/Model.h"
+#include "Model.h"
 #include "spdlog/spdlog.h"
 
-#include "model/BasicClock.h"
-#include "model/Core.h"
+#include "BasicClock.h"
+#include "Core.h"
 
 void test() {
   auto clk = std::make_shared<model::BasicClock>();
