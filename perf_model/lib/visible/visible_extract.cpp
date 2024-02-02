@@ -5,6 +5,22 @@
 #include "visible_extract.h"
 #include "visible.h"
 
+void get_staged(std::vector<Staged> &vstaged,
+                const rapidjson::Value &stagedArray) {
+  if (stagedArray.IsArray()) {
+    for (rapidjson::SizeType j = 0; j < stagedArray.Size(); ++j) {
+      const rapidjson::Value &stagedItem = stagedArray[j];
+      if (stagedItem.IsObject()) {
+        Staged staged;
+        staged.index = stagedItem["index"].GetUint();
+        staged.next = stagedItem["next"].GetUint();
+        staged.prev = stagedItem["prev"].GetUint();
+        vstaged.push_back(staged);
+      }
+    }
+  }
+}
+
 void get_dec(DecodedInstr &decoded, const rapidjson::Value &dec) {
   if (dec.IsObject()) {
     decoded.has_imm = dec["has_imm"].GetBool();

@@ -10,21 +10,8 @@
 #include "rapidjson/document.h"
 #include "visible.h"
 
-template <typename T>
-void get_staged(std::vector<T> &vstaged, const rapidjson::Value &stagedArray) {
-  if (stagedArray.IsArray()) {
-    for (rapidjson::SizeType j = 0; j < stagedArray.Size(); ++j) {
-      const rapidjson::Value &stagedItem = stagedArray[j];
-      if (stagedItem.IsObject()) {
-        T staged;
-        staged.index = stagedItem["index"].GetUint();
-        staged.next = stagedItem["next"].GetUint();
-        staged.prev = stagedItem["prev"].GetUint();
-        vstaged.push_back(staged);
-      }
-    }
-  }
-}
+void get_staged(std::vector<Staged> &vstaged,
+                const rapidjson::Value &stagedArray);
 
 void get_dec(DecodedInstr &decoded, const rapidjson::Value &dec);
 

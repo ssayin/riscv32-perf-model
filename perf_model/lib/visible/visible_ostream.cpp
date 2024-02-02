@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#include "visible.h"
 #include "rapidjson/document.h"
+#include "visible.h"
 
 #include <fstream>
 #include <iostream>
@@ -34,16 +34,10 @@ std::ostream &operator<<(std::ostream &os, const DecodedInstr &item) {
   return os;
 }
 
-std::ostream &operator<<(std::ostream &os, const CsrStaged &item) {
+std::ostream &operator<<(std::ostream &os, const Staged &item) {
   os << "  Index: " << item.index << ", New: " << item.next
      << ", Old: " << item.prev;
 
-  return os;
-}
-
-std::ostream &operator<<(std::ostream &os, const GprStaged &item) {
-  os << "  Index: " << item.index << ", New: " << item.next
-     << ", Old: " << item.prev;
   return os;
 }
 

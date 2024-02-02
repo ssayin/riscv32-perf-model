@@ -9,25 +9,17 @@
 #include <ostream>
 #include <vector>
 
-struct CsrStaged;
-struct GprStaged;
+struct Staged;
 struct DecodedInstr;
 struct PC;
 struct VisibleState;
 
 std::ostream &operator<<(std::ostream &os, const PC &item);
 std::ostream &operator<<(std::ostream &os, const DecodedInstr &item);
-std::ostream &operator<<(std::ostream &os, const CsrStaged &item);
-std::ostream &operator<<(std::ostream &os, const GprStaged &item);
+std::ostream &operator<<(std::ostream &os, const Staged &item);
 std::ostream &operator<<(std::ostream &os, const VisibleState &item);
 
-struct CsrStaged {
-  uint32_t next;
-  uint32_t prev;
-  uint16_t index;
-};
-
-struct GprStaged {
+struct Staged {
   uint32_t next;
   uint32_t prev;
   uint16_t index;
@@ -51,8 +43,8 @@ struct PC {
 };
 
 struct VisibleState {
-  std::vector<CsrStaged> csr_staged;
-  std::vector<GprStaged> gpr_staged;
+  std::vector<Staged> csr_staged;
+  std::vector<Staged> gpr_staged;
   DecodedInstr dec;
   uint32_t instr;
   PC pc;
