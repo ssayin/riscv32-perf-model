@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-#include "common/common.hpp"
 #include "model/Model.h"
 #include "spdlog/spdlog.h"
 

@@ -4,6 +4,7 @@
 #include "model/BasicClock.h"
 #include "model/BasicClockSubscriber.h"
 #include "model/Core.h"
+#include "visible.h"
 #include <memory>
 
 namespace model {
@@ -17,6 +18,8 @@ public:
   void onPosEdge() override;
   void onNegEdge() override;
   void onAdvance() override;
+
+  void playback(std::vector<VisibleState> &visible);
 
   std::vector<Core> core;
 

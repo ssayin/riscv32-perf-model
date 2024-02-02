@@ -5,7 +5,7 @@
 #ifndef MODEL_ICORE_H
 #define MODEL_ICORE_H
 
-#include "PerfStats.h"
+#include "model/PerfStats.h"
 
 namespace model {
 

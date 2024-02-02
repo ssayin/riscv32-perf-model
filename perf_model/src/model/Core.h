@@ -11,9 +11,9 @@
 
 #include "BasicClock.h"
 #include "BasicClockSubscriber.h"
-#include "IClock.h"
-#include "ICore.h"
 #include "model/BasicClockSubscriber.h"
+#include "model/IClock.h"
+#include "model/ICore.h"
 
 namespace model {
 
