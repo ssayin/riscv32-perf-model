@@ -43,7 +43,7 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     target_include_directories(spdlog INTERFACE ${spdlog_SOURCE_DIR}/include)
   endif()
 
-  set(rapidjson_SOURCE_DIR third_party/rapidjson)
+  set(rapidjson_SOURCE_DIR INTERFACE third_party/rapidjson)
 
   add_subdirectory(perf_model)
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cmake -B build -G"Unix Makefiles"
+cmake -B build
 make -C build
 ./build/bin/model
 
